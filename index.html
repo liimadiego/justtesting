@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f5f5f5;
+            font-family: Arial, sans-serif;
+        }
+        #displayImage {
+            max-width: 200px;
+            height: auto;
+            border: 2px solid #333;
+            border-radius: 10px;
+        }
+        #imageUpload {
+            margin-top: 20px;
+            padding: 10px;
+            background: #333;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #containerImage{
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            top: -30px;
+            left: -10px;
+        }
+        #btnImg{
+            background-color: #333;
+            border-radius: 20px;
+            padding: 10px 20px;
+            outline: none;
+            border: 1px solid #6e6e6e;
+            color: #fff;
+            font-size: 14pt;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div id="containerImage">
+            <img id="displayImage" style="display: none;">
+        </div>
+        <label for="imageUpload" id="btnImg">
+            Escolher Imagem
+        </label>
+        <input type="file" style="display:none" id="imageUpload">
+    </div>
+
+    <script>
+        document.querySelector('#imageUpload').addEventListener('change', e => {
+            let reader = new FileReader();
+
+            reader.onload = event => {
+                let displayImage = document.querySelector('#displayImage')
+
+                displayImage.style.display = 'block'
+                displayImage.src = event.target.result
+            }
+
+            reader.readAsDataURL(e.target.files[0])
+
+        })
+    </script>
+</body>
+</html>
